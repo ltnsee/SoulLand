@@ -1,0 +1,76 @@
+模拟器名称                        端口号
+-------------------------------------
+逍遥游                           21503
+夜神模拟器                       62001 
+海马玩模拟器                     26944 
+网易mumu模拟器                   7555
+天天模拟器                       6555
+BlueStacks                      5555
+雷电安卓模拟器                   5555
+天天安卓模拟器                   5037
+安卓模拟器大师                   54001
+Genymotion                      5555
+======================
+连接命令： adb connect 127.0.0.1:7555
+=====================
+其他：
+adb devices(查看设备连接情况)
+adb kill-server
+adb start-server
+adb remount 
+
+netstat 这个命令也能获得端口号
+netstat |findstr 127.0.0.1(用这个直接输出需要的几行）
+常用adb操作
+1、如何把电脑上的文件或文件夹传到模拟器里面？
+adb push D:/1.avi /mnt/avi/
+
+2、如何把模拟器里面的文件或文件夹传到电脑上？
+adb pull /mnt/avi/sex.avi D:/avi/
+
+3、安装APK
+adb install d:\\qq.apk
+
+4、卸载APK
+adb uninstall 包名
+比如卸载QQ：adb uninstall com.tencent.mobileqq
+
+5、PM包命令
+1）获取模拟器所有包名
+adb shell pm list packages
+
+2）获取模拟器所有包名并且包括APK路径
+adb shell pm list packages -f
+
+3）获取包名对应的APK路径
+adb shell pm path packageName
+
+4）清理应用数据
+adb shell pm clear packageName
+
+6、启动应用
+adb shell am start -n 包名/Activity类名
+
+例子：启动应用宝：
+adb shell am start -n com.tencent.android.qqdownloader/com.tencent.assistant.activity.SplashActivity
+
+指定模拟器启动动应用宝：
+adb -s 127.0.0.1:5555 shell am start -n com.tencent.android.qqdownloader/com.tencent.assistant.activity.SplashActivity
+
+7、关闭应用
+adb shell am force-stop 包名
+
+8、模拟输入
+adb shell input text 字符串(不支持中文)
+
+9、模拟按键
+adb shell input keyevent 键值
+
+10、模拟鼠标点击
+adb shell input tap X Y
+
+11、模拟鼠标滑动
+adb shell input swipe X1 Y1 X2 Y2
+
+12、截屏
+adb shell screencap -p /sdcard/screencap.png
